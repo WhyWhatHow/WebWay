@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>WebWay</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<!-- 练习 servletConfig , =========== ============================== 不常用 ServletConfig 
+		针对局变量 ，每个Servlet 都会有一个 servletConfig， ServletCOnfig 初始化： ServletConfig config 
+		= getServletConfig(); ServletConfig常用方法如下： getInitParameter(String  name);通过初始化的名称 
+		获取参数初始化时的值 getInitParameterNames();通过这个方法，返回的是string泛型的枚举、Enumeration<String>;里面是所有的初始化的名称。通过遍历获取所有的对应的值。用枚举对象.调用hasMoreElements（）方法可以知道还有没有下一个元素。nextElement();获取下一个元素 
+		getServletContext(); 获得servletContext对象 getServletName();获取配置的名称 -->
+	<servlet>
+		<description>学习servletConfig</description>
+		<display-name>TestServletConfig</display-name>
+		<servlet-name>TestServletConfig</servlet-name>
+		<servlet-class>top.enjoy_life.config.TestServletConfig</servlet-class>
+		<init-param>
+			<param-name>name</param-name>
+			<param-value>小欧表</param-value>
+		</init-param>
+		<init-param>
+			<param-name>mother</param-name>
+			<param-value>︿(￣︶￣)︿</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TestServletConfig</servlet-name>
+		<url-pattern>/TestServletConfig</url-pattern>
+	</servlet-mapping>
+
+	<!-- 测试 load-on-startup ，以TestServeltStart1，TestServletStart02 为例 -->
+
+	<servlet>
+		<display-name>TestServletStart1</display-name>
+		<servlet-name>TestServletStart1</servlet-name>
+		<servlet-class>top.enjoy_life.servlet.TestServletStart1</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TestServletStart1</servlet-name>
+		<url-pattern>/TestServletStart1</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<display-name>TestServletStart2</display-name>
+		<servlet-name>TestServletStart2</servlet-name>
+		<servlet-class>top.enjoy_life.servlet.TestServletStart02</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TestServletStart2</servlet-name>
+		<url-pattern>/TestServletStart2</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<display-name>TestServletStart</display-name>
+		<servlet-name>TestServletStart</servlet-name>
+		<servlet-class>top.enjoy_life.servlet.TestServletStart</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TestServletStart</servlet-name>
+		<url-pattern>/TestServletStart</url-pattern>
+	</servlet-mapping>
+</web-app>
