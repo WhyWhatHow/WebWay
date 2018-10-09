@@ -1,2 +1,3 @@
 ###  what's it using ? 
-> remeber the way I have learned java web.
+> 记录自己在学完网课后的代码实践，其中不乏有一些相对较为简单的案例，本文档的作用类似于目录章节的作用，不过不会太过全面。
+
