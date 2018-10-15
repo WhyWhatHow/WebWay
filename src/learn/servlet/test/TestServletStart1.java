@@ -1,36 +1,30 @@
-package top.enjoy_life.servlet;
+package learn.servlet.test;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class TestServletStart
- */
-public class TestServletStart extends HttpServlet {
+public class TestServletStart1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TestServletStart() {
+
+    public TestServletStart1() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    
+    @Override
+    public void init() throws ServletException {
+    	super.init();
+    	System.out.println("=============================================================================");
+    	System.out.println("Start1创建哦咯");
+		System.out.println("=============================================================================");
+    }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	System.out.println(	response.getWriter().append("Served at: ").append(request.getContextPath()));
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

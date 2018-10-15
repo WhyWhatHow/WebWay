@@ -1,4 +1,4 @@
-package top.enjoy_life.config;
+package learn.servlet.test;
 
 import java.io.IOException;
 
@@ -8,16 +8,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/*
+ *  servletConfig 常见方法： 
+ *    获取servletConfig；ServletConfig  config =getServletConfig();
+ *    config.getServletName();
+ *    config.getInitParameter(String name) ;
+ *    config.getInitParmaeterNames();   	 
+ */
 public class TestServletConfig extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public TestServletConfig() {
 		// TODO Auto-generated constructor stub
 	}
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ServletConfig  config =getServletConfig();
+		/* web.xml :
+		 *   <init-param>
+		 *    <param-name>mother</param-name>
+		 *   <param-value>︿(￣︶￣)︿</param-value>
+		 * </init-param>
+		 **/
 		String name = config.getInitParameter("name");
 		String mother = config.getInitParameter("mother");
 		response.setContentType("text/html;charset=utf-8");

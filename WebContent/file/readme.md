@@ -36,18 +36,13 @@
 #### servletContext : usually
 > web 工程共享一个servletContext，即对一个web工程，servletContext 唯一。
 ##### functions : 
->   ServletContext context = getServletContext();
 >	1. 获取全局参数
-	String address = context.getInitParamter("address");
->	2. 获取工程里面的资源。 
-	context.getAttribute(name);
-	String path = context.getRealPath("TestServletContext.java");	
->	3. 资源共享。  ServletContext 域对象  , 
- 	InputStream in = context.getResourceAsStream("file/readme.md");
-		
->  	- PS: servletContext对象所获取的 资源实现对于tomcat服务器而言的，因而，建议将web资源放于文件夹 WebContent下,其实也可以通过获取绝对路径后，通过io流操作. 
 
->   [示例:] (/WebWay/src/learn/servlet/test/TestServletContext.java)
+>	2. 获取工程里面的资源。
+
+>	3. 资源共享。  ServletContext 域对象
+
+>   [示例:] (/WebWay/src/learn/servlet/test/TestServletConfig.java)
 
 --- --- 
 
