@@ -25,42 +25,77 @@
 
 #### servletConfig ：sometimes
 ##### functions : 
-> *  servletConfig 示例:： 
-> *  获取servletConfig；ServletConfig  config =getServletConfig();
-> *  config.getServletName();
-> *  config.getInitParameter(String name) ;
-> *  config.getInitParmaeterNames(); 
+>   servletConfig 示例:： 
+```java
+   ServletConfig  config =getServletConfig(); // 获取servletConfig；
+   config.getServletName();
+   config.getInitParameter(String name) ;
+   config.getInitParmaeterNames(); 
+```
 
 >  [示例:] (/WebWay/src/learn/servlet/test/TestServletConfig.java)
 
-#### servletContext : usually
+
+
+#### servletContext : usually 
+
+> 周期： 同 servlet  
 > web 工程共享一个servletContext，即对一个web工程，servletContext 唯一。
 ##### functions : 
+
+   -  1. 获取全局参数
+
 >   ServletContext context = getServletContext();
->	1. 获取全局参数
-	String address = context.getInitParamter("address");
->	2. 获取工程里面的资源。 
-	context.getAttribute(name);
-	String path = context.getRealPath("TestServletContext.java");	
->	3. 资源共享。  ServletContext 域对象  , 
- 	InputStream in = context.getResourceAsStream("file/readme.md");
-		
->  	- PS: servletContext对象所获取的 资源实现对于tomcat服务器而言的，因而，建议将web资源放于文件夹 WebContent下,其实也可以通过获取绝对路径后，通过io流操作. 
+>   String address = context.getInitParamter("address");
+
+
+   -  2. 获取工程里面的资源。 
+
+>   context.getAttribute(name);
+>   String path = context.getRealPath("TestServletContext.java");	
+
+   -  3. 资源共享。  ServletContext 域对象  , 
+
+>InputStream in = context.getResourceAsStream("file/readme.md");
+
+- PS: servletContext对象所获取的 资源实现对于tomcat服务器而言的，因而，建议将web资源放于文件夹 WebContent下,其实也可以通过获取绝对路径后，通过io流操作. 
 
 >   [示例:] (/WebWay/src/learn/servlet/test/TestServletContext.java)
 
---- --- 
+--- ---
 
-=================================================================
+
 
 ### HttpServletReqest 
+
 >  [示例:] (/WebWay/src/learn/servlet/test/TestServletConfig.java)
 #### functions : 
+- 可以获取客户端请求头信息
+```java
+ Enumeration<String> parameterNames = request.getParameterNames();
+```
+- 中文乱码： 
+     	
+    - 修改配置文件:  tomcat 安装目录下 /config/server.xml：
 
-=================================================================
+     	 >  <Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443" URIEncoding="UTF-8"/> 
+
+     	- post  :
+     	> request.setCharacterEncoding("utf-8");
+      
+      - get :
+      ```java  
+       	String username = request.getParameter("username");
+    		//先让文字回到ISO-8859-1对应的字节数组 ， 然后再按utf-8组拼字符串
+    	   username = new String(username.getBytes("ISO-8859-1") , "UTF-8");
+	```
+
 
 ### HttpServletResponse 
-#### functions : 
+#### functions :
+-   解決中文乱码问题：
+> response.setContentType("text/html;charset=UTF-8");
+- 		  
 >  [示例:] (/WebWay/src/learn/servlet/test/TestServletConfig.java)
 
 =================================================================

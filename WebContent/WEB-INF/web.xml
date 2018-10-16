@@ -9,7 +9,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
- <!-- test servletConfig -->
   <servlet>
     <description>学习servletConfig</description>
     <display-name>TestServletConfig</display-name>
@@ -28,7 +27,6 @@
     <servlet-name>TestServletConfig</servlet-name>
     <url-pattern>/TestServletConfig</url-pattern>
   </servlet-mapping>
- <!-- test servletstart, other words, load-on-start-up -->
   <servlet>
     <display-name>TestServletStart1</display-name>
     <servlet-name>TestServletStart1</servlet-name>
@@ -68,10 +66,9 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
-  <!-- test servletContext  -->
   <context-param>
-  <param-name>address </param-name>
-  <param-value>北京呢==================</param-value>
+    <param-name>address</param-name>
+    <param-value>北京呢==================</param-value>
   </context-param>
   <servlet>
     <description></description>
@@ -82,5 +79,15 @@
   <servlet-mapping>
     <servlet-name>TestServletContext</servlet-name>
     <url-pattern>/TestServletContext</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TestRequest</display-name>
+    <servlet-name>TestRequest</servlet-name>
+    <servlet-class>learn.servlet.test.TestRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestRequest</servlet-name>
+    <url-pattern>/TestRequest</url-pattern>
   </servlet-mapping>
 </web-app>
