@@ -10,6 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/*
+  *     测试方法一 ： html 登录页面： /WebWay/WebContent/test/countServeltContext.html
+ *   测试方法二： http://localhost:8080/WebWay/TestRequest?username=admin&password=aa12321.   -- 修改参数实现, 
+ *    解决问题： 
+ *     	attribute,paramter,initalParamter
+ *    	中文乱码 	 
+ *    	servletContext 访问对象归属问题 ，---web服务器， 对项目而言是 webContent 下的文件.
+ *  PS: 至于方法：自己多看java-ee-api文档吧
+ *  request.setCharacterEncoding("utf-8");
+ *		request.getAttribute(name);
+ * 		request.getParameter(name);
+ *		request.getParameterMap();
+ * 		request.getAttributeNames();
+ */
 public class TestRequest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -21,7 +35,8 @@ public class TestRequest extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String oldEncoding = request.getCharacterEncoding();
-		request.setCharacterEncoding("utf-8");
+		
+		
 		String username = request.getParameter("username");
 		String passward = request.getParameter("password");
 		Enumeration<String> parameterNames = request.getParameterNames();

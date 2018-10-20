@@ -90,4 +90,14 @@
     <servlet-name>TestRequest</servlet-name>
     <url-pattern>/TestRequest</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>downloadDemo</display-name>
+    <servlet-name>downloadDemo</servlet-name>
+    <servlet-class>learn.servlet.test.downloadDemo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>downloadDemo</servlet-name>
+    <url-pattern>/downloadDemo</url-pattern>
+  </servlet-mapping>
 </web-app>

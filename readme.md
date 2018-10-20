@@ -1,7 +1,7 @@
 ##  what's it using ? 
 > 记录自己在学完网课后的代码实践，其中不乏有一些相对较为简单的案例，本文档的作用类似于目录章节的作用，记录java web 的学习步骤。
->@author : WhyWhatHow
->Finished：servletConfig 
+- author : WhyWhatHow
+- Finished：servletConfig 
 
 --- ---
 ## java web
@@ -60,6 +60,7 @@
 
 - PS: servletContext对象所获取的 资源实现对于tomcat服务器而言的，因而，建议将web资源放于文件夹 WebContent下,其实也可以通过获取绝对路径后，通过io流操作. 
 
+
 >   [示例:] (/WebWay/src/learn/servlet/test/TestServletContext.java)
 
 --- ---
@@ -68,7 +69,7 @@
 
 ### HttpServletReqest 
 
->  [示例:] (/WebWay/src/learn/servlet/test/TestServletConfig.java)
+>  [示例:] (/WebWay/src/learn/servlet/test/TestRequest.java)
 #### functions : 
 - 可以获取客户端请求头信息
 ```java
@@ -93,16 +94,49 @@
 
 ### HttpServletResponse 
 #### functions :
--   解決中文乱码问题：
-> response.setContentType("text/html;charset=UTF-8");
-- 		  
->  [示例:] (/WebWay/src/learn/servlet/test/TestServletConfig.java)
 
-=================================================================
+-   解決中文乱码问题：
+
+> response.setContentType("text/html;charset=UTF-8");
+
+- 文档下载：    [link](http://localhost:8080/WebWay/test/download.jsp)
+
+```java
+		// 1. 获取文件名
+		String name = request.getParameter("fileName");
+		// 2. 获取文件绝对路径
+		String file = context.getRealPath("file/" + name);
+		// 3. 解决浏览器乱码 （可省略）
+		String clientName = request.getHeader("User-Agent");
+		name = changeFileNameInBrower(clientName, name);
+		// 4. 设置文件返回类型， 以附件返回
+		response.setHeader("Content-Disposition", "attachment;filename=" + name); // 将文件以附件的形式 展示。
+		// 5 写入 response 的过程：
+		try {
+			InputStream inputStream = new FileInputStream(file);
+			byte[] buf = new byte[1024];
+			OutputStream outputStream = response.getOutputStream();
+			int len = 0;
+			while ((len = inputStream.read(buf)) != -1) {
+				outputStream.write(buf, 0, len);
+			}
+			inputStream.close();
+			outputStream.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+```
+			  
+>  [示例:servlet] (/WebWay/src/learn/servlet/test/DownloadDemo.java)
+
+--- ---
 
 ### Cookie : 
-#### functions : 
+#### PS :
+	- java web 的默认资源存放位置为 webContent 文档目录下 
+
 >  [示例:] (/WebWay/src/learn/servlet/test/TestServletConfig.java)
+
 
 =================================================================
 

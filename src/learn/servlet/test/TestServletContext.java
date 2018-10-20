@@ -41,7 +41,7 @@ public class TestServletContext extends HttpServlet {
 //			InputStream in = context.getResourceAsStream("file/read.properties");
 //			Properties properties = new Properties();
 
-			InputStream in = context.getResourceAsStream("file/readme.md");
+			InputStream in = context.getResourceAsStream("file/read.txt");
 			if (in != null) {
 //				properties.load(in);
 //				System.out.println(properties.getProperty("username"));
