@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>测试请求转发与重定向的区别</title>
+<!--
+ 	 相关文件如下 ；
+ 	  jsp : 
+ 	  	/WebWay/WebContent/test/TestRequestDispathcher.jsp
+ 		/WebWay/WebContent/test/testRediction.jsp
+ 	  servlet : 
+ 	 	 /WebWay/src/learn/servlet/test/TestRequsetDispatcher.java
+ 	 	 /WebWay/src/learn/servlet/test/TestRediction.java
+  -->
+</head>
+<body><!-- 
+<a href= "TestDispathcher"> 跳转页面</a>
+<a href= "/WebWay/TestRediction"> rediction跳转页面</a> -->
+
+	<h1>
+		<a href="/WebWay/TestRediction?name=aaa"> 重定向</a>
+	</h1>
+	
+	<h1>
+		<a href="/WebWay/TestDispathcher?name=aa"> 请求转发</a>
+	</h1>
+</body>
+</html>

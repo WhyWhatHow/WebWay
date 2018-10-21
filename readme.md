@@ -2,7 +2,7 @@
 > 记录自己在学完网课后的代码实践，其中不乏有一些相对较为简单的案例，本文档的作用类似于目录章节的作用，记录java web 的学习步骤。
 - author : WhyWhatHow
 - Finished：servletConfig 
-
+- TODO: cookie && session
 --- ---
 ## java web
 --- ---
@@ -105,7 +105,7 @@
 		// 1. 获取文件名
 		String name = request.getParameter("fileName");
 		// 2. 获取文件绝对路径
-		String file = context.getRealPath("file/" + name);
+		String file = context.getRealPath("file/" + name); // webContent 文件夹下
 		// 3. 解决浏览器乱码 （可省略）
 		String clientName = request.getHeader("User-Agent");
 		name = changeFileNameInBrower(clientName, name);
@@ -126,14 +126,26 @@
 			e.printStackTrace();
 		}
 ```
+- 请求转发与重定向 的区别： 
+	
+	请求转发只会发送一次http请求，而重定向则两次，这一点可以通过获取request携带params确定：
+		请求转发 : 可以返回请求参数	eg:request.getRequestDispatcher("你是鸡要跳转的页面__").forward(request, response); --效率相對高
+		重定向： 没有返回参数，因为是第二次http请求，对于第二次http请求而言，并没有携带信息的必要性。 -- 消耗资源，慢
+- thinking : 
+	request.getParamter(String name)与 request.getAttibute(String name) 的不同? 
+	[ans](https://blog.csdn.net/qq_35449428/article/details/78151648);
+	hint: 
+		数据来源，应用场景，操作场景，数据类型
+
 			  
->  [示例:servlet] (/WebWay/src/learn/servlet/test/DownloadDemo.java)
+>  [文档下载示例:servlet] (/WebWay/src/learn/servlet/test/DownloadDemo.java)
+>  [重定向與請求轉發的區別案例:] (/WebWay/WebContent/test/Dispatcher&Rediction.html)
 
---- ---
-
-### Cookie : 
 #### PS :
-	- java web 的默认资源存放位置为 webContent 文档目录下 
+	- java web 的默认资源存放位置为 webContent 文档目录下
+--- ---
+### Cookie : 
+ 
 
 >  [示例:] (/WebWay/src/learn/servlet/test/TestServletConfig.java)
 
