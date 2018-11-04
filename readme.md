@@ -3,6 +3,7 @@
 - author : WhyWhatHow
 - Finished：servletConfig 
 - TODO: cookie && session
+- Mind Map: [link](http://naotu.baidu.com/file/19f3ff42c9d50661fdb96be77836a071?token=5d54b9a7269664f4)
 --- ---
 ## java web
 --- ---
@@ -146,10 +147,24 @@
 --- ---
 ### Cookie : 
  
+#### 显示上一次登陆的时间： 
+ 
+		 	 * 1. 获取请求数据， usename,password 
+			 * 2. 判断是否有cookie，含有上一次登陆时间，若有，获取上次登录时间，，修改对应的cookie值，response 返回，
+			 * 3.否则的话，生成新的cookie，加入response 
 
->  [示例:] (/WebWay/src/learn/servlet/test/TestServletConfig.java)
+>  [示例:] (/WebWay/src/learn/servlet/Demo/LoginLatestServlet.java)
+> [link](http://localhost:8080/WebWay/test/recentLogin.jsp)
+#### 浏览记录： 
 
-
+- Test: http://localhost:8080/WebWay/test/GoodsList.jsp 
+ -- 在tomcat服务器中挂载上WebWay后在访问网址
+- 业务逻辑； 
+ -- view: /test/GoodsList.jsp, /test/GoodsDetail.jsp
+ -- controller: HistoryServlet，ClearServlet
+ -- model : 未涉及
+- 教训： 
+ -- 一个一个界面的写，一个功能一个功能的完善。 
 =================================================================
 
 ### Session: 

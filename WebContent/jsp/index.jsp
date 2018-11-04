@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8" session="true " errorPage="404.html"isErrorPage="false"%>
 <!DOCTYPE html>
 <html>
 <head>
