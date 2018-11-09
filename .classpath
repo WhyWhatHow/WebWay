@@ -16,6 +16,8 @@
 	<classpathentry kind="lib" path="lib/servlet-api.jar" sourcepath="D:/Java/JAR/servlet/servlet_src"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/standard.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-pool2-2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jedis-2.7.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

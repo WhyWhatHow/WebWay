@@ -8,6 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+img {
+	width: 250px;
+	height: 250px;
+	display: flow;
+}
+</style>
 </head>
 <body>
 	<h1>Goods Detail's Page</h1>

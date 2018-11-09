@@ -13,7 +13,7 @@
     <description>学习servletConfig</description>
     <display-name>TestServletConfig</display-name>
     <servlet-name>TestServletConfig</servlet-name>
-    <servlet-class>learn.servlet.test.test.TestServletConfig</servlet-class>
+    <servlet-class>learn.test.test.TestServletConfig</servlet-class>
     <init-param>
       <param-name>name</param-name>
       <param-value>小欧表</param-value>
@@ -30,7 +30,7 @@
   <servlet>
     <display-name>TestServletStart1</display-name>
     <servlet-name>TestServletStart1</servlet-name>
-    <servlet-class>learn.servlet.test.TestServletStart1</servlet-class>
+    <servlet-class>learn.test.TestServletStart1</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
@@ -40,7 +40,7 @@
   <servlet>
     <display-name>TestServletStart2</display-name>
     <servlet-name>TestServletStart2</servlet-name>
-    <servlet-class>learn.servlet.test.TestServletStart02</servlet-class>
+    <servlet-class>learn.test.TestServletStart02</servlet-class>
     <load-on-startup>2</load-on-startup>
   </servlet>
   <servlet-mapping>
@@ -50,7 +50,7 @@
   <servlet>
     <display-name>TestServletStart</display-name>
     <servlet-name>TestServletStart</servlet-name>
-    <servlet-class>learn.servlet.test.TestServletStart</servlet-class>
+    <servlet-class>learn.test.TestServletStart</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>TestServletStart</servlet-name>
@@ -74,7 +74,7 @@
     <description></description>
     <display-name>TestServletContext</display-name>
     <servlet-name>TestServletContext</servlet-name>
-    <servlet-class>learn.servlet.test.TestServletContext</servlet-class>
+    <servlet-class>learn.test.TestServletContext</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>TestServletContext</servlet-name>
@@ -84,7 +84,7 @@
     <description></description>
     <display-name>TestRequest</display-name>
     <servlet-name>TestRequest</servlet-name>
-    <servlet-class>learn.servlet.test.TestRequest</servlet-class>
+    <servlet-class>learn.test.TestRequest</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>TestRequest</servlet-name>
@@ -94,7 +94,7 @@
     <description></description>
     <display-name>downloadDemo</display-name>
     <servlet-name>downloadDemo</servlet-name>
-    <servlet-class>learn.servlet.test.downloadDemo</servlet-class>
+    <servlet-class>learn.test.downloadDemo</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>downloadDemo</servlet-name>
@@ -104,7 +104,7 @@
     <description></description>
     <display-name>TestCookie</display-name>
     <servlet-name>TestCookie</servlet-name>
-    <servlet-class>learn.servlet.test.TestCookie</servlet-class>
+    <servlet-class>learn.test.TestCookie</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>TestCookie</servlet-name>
@@ -114,7 +114,7 @@
     <description></description>
     <display-name>TestRediction</display-name>
     <servlet-name>TestRediction</servlet-name>
-    <servlet-class>learn.servlet.test.TestRediction</servlet-class>
+    <servlet-class>learn.test.TestRediction</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>TestRediction</servlet-name>
@@ -123,7 +123,7 @@
   <servlet>
     <display-name>TestDispathcher</display-name>
     <servlet-name>TestDispathcher</servlet-name>
-    <servlet-class>learn.servlet.test.TestRequsetDispatcher</servlet-class>
+    <servlet-class>learn.test.TestRequsetDispatcher</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>TestDispathcher</servlet-name>
@@ -133,7 +133,7 @@
     <description></description>
     <display-name>LoginLatestServlet</display-name>
     <servlet-name>LoginLatestServlet</servlet-name>
-    <servlet-class>learn.servlet.Demo.LoginLatestServlet</servlet-class>
+    <servlet-class>learn.demo.LatestLogin.LoginLatestServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginLatestServlet</servlet-name>
@@ -152,7 +152,7 @@
     <description></description>
     <display-name>HistoryServlet</display-name>
     <servlet-name>HistoryServlet</servlet-name>
-    <servlet-class>learn.servlet.Demo.HistoryServlet</servlet-class>
+    <servlet-class>learn.demo.HistoryVisited.HistoryServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>HistoryServlet</servlet-name>
@@ -162,10 +162,29 @@
     <description></description>
     <display-name>ClearServlet</display-name>
     <servlet-name>ClearServlet</servlet-name>
-    <servlet-class>learn.servlet.Demo.ClearServlet</servlet-class>
+    <servlet-class>learn.demo.HistoryVisited.ClearServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ClearServlet</servlet-name>
     <url-pattern>/ClearServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>PhoneBuyServlet</display-name>
+    <servlet-name>PhoneBuyServlet</servlet-name>
+    <servlet-class>learn.demo.ShoppingCar.PhoneBuyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PhoneBuyServlet</servlet-name>
+    <url-pattern>/PhoneBuyServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PhoneChoseServlet</display-name>
+    <servlet-name>PhoneChoseServlet</servlet-name>
+    <servlet-class>learn.demo.ShoppingCar.PhoneChoseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PhoneChoseServlet</servlet-name>
+    <url-pattern>/PhoneChoseServlet</url-pattern>
   </servlet-mapping>
 </web-app>

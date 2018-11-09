@@ -1,9 +1,10 @@
 ##  what's it using ? 
 > 记录自己在学完网课后的代码实践，其中不乏有一些相对较为简单的案例，本文档的作用类似于目录章节的作用，记录java web 的学习步骤。
 - author : WhyWhatHow
-- Finished：servletConfig 
-- TODO: cookie && session
+- Finished：Cookie 
+- TODO: Jsp
 - Mind Map: [link](http://naotu.baidu.com/file/19f3ff42c9d50661fdb96be77836a071?token=5d54b9a7269664f4)
+- notice : the thing i wrote may wrong, if wrong, just feed back!
 --- ---
 ## java web
 --- ---
@@ -153,18 +154,25 @@
 			 * 2. 判断是否有cookie，含有上一次登陆时间，若有，获取上次登录时间，，修改对应的cookie值，response 返回，
 			 * 3.否则的话，生成新的cookie，加入response 
 
->  [示例:] (/WebWay/src/learn/servlet/Demo/LoginLatestServlet.java)
+>  [示例:] (/WebWay/src/learn/demo/LatestLogin/LoginLatestServlet.java)
 > [link](http://localhost:8080/WebWay/test/recentLogin.jsp)
 #### 浏览记录： 
 
 - Test: http://localhost:8080/WebWay/test/GoodsList.jsp 
- -- 在tomcat服务器中挂载上WebWay后在访问网址
+
+> 在tomcat服务器中挂载上WebWay后在访问网址
+
 - 业务逻辑； 
- -- view: /test/GoodsList.jsp, /test/GoodsDetail.jsp
- -- controller: HistoryServlet，ClearServlet
- -- model : 未涉及
+
+> view: /test/GoodsList.jsp, /test/GoodsDetail.jsp
+> controller: HistoryServlet，ClearServlet 
+> location :/WebWay/src/learn/demo/HistoryVisited/*.java
+> model : no DB
+
 - 教训： 
- -- 一个一个界面的写，一个功能一个功能的完善。 
+ 
+> 一个一个界面的写，一个功能一个功能的完善。 
+
 =================================================================
 
 ### Session: 

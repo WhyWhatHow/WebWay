@@ -1,4 +1,4 @@
-package learn.servlet.test;
+package learn.test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
