@@ -56,16 +56,6 @@
     <servlet-name>TestServletStart</servlet-name>
     <url-pattern>/TestServletStart</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>LoginServlet</display-name>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>learn.config.LoginServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/LoginServlet</url-pattern>
-  </servlet-mapping>
   <context-param>
     <param-name>address</param-name>
     <param-value>北京呢==================</param-value>
@@ -133,7 +123,7 @@
     <description></description>
     <display-name>LoginLatestServlet</display-name>
     <servlet-name>LoginLatestServlet</servlet-name>
-    <servlet-class>learn.demo.LatestLogin.LoginLatestServlet</servlet-class>
+    <servlet-class>demo.LatestLogin.LoginLatestServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginLatestServlet</servlet-name>
@@ -152,7 +142,7 @@
     <description></description>
     <display-name>HistoryServlet</display-name>
     <servlet-name>HistoryServlet</servlet-name>
-    <servlet-class>learn.demo.HistoryVisited.HistoryServlet</servlet-class>
+    <servlet-class>demo.HistoryVisited.HistoryServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>HistoryServlet</servlet-name>
@@ -162,7 +152,7 @@
     <description></description>
     <display-name>ClearServlet</display-name>
     <servlet-name>ClearServlet</servlet-name>
-    <servlet-class>learn.demo.HistoryVisited.ClearServlet</servlet-class>
+    <servlet-class>demo.HistoryVisited.ClearServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ClearServlet</servlet-name>
@@ -171,7 +161,7 @@
   <servlet>
     <display-name>PhoneBuyServlet</display-name>
     <servlet-name>PhoneBuyServlet</servlet-name>
-    <servlet-class>learn.demo.ShoppingCar.PhoneBuyServlet</servlet-class>
+    <servlet-class>demo.ShoppingCar.PhoneBuyServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>PhoneBuyServlet</servlet-name>
@@ -181,10 +171,20 @@
     <description></description>
     <display-name>PhoneChoseServlet</display-name>
     <servlet-name>PhoneChoseServlet</servlet-name>
-    <servlet-class>learn.demo.ShoppingCar.PhoneChoseServlet</servlet-class>
+    <servlet-class>demo.ShoppingCar.PhoneChoseServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>PhoneChoseServlet</servlet-name>
     <url-pattern>/PhoneChoseServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LoginServlet</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>demo.StuManager.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
 </web-app>

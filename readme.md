@@ -58,7 +58,7 @@
 
    -  3. 资源共享。  ServletContext 域对象  , 
 
->InputStream in = context.getResourceAsStream("file/readme.md");
+> InputStream in = context.getResourceAsStream("file/readme.md");
 
 - PS: servletContext对象所获取的 资源实现对于tomcat服务器而言的，因而，建议将web资源放于文件夹 WebContent下,其实也可以通过获取绝对路径后，通过io流操作. 
 
@@ -177,14 +177,40 @@
 
 ### Session: 
 #### functions : 
->  [示例:] (/WebWay/src/learn/servlet/test/TestServletConfig.java)
+#### shoppingCar:
+
+- Test: http://localhost:8080/WebWay/test/PhoneList.jsp
+- 业务逻辑： 
+
+```
+	PhoneList.jsp(商品列表页面) 
+	 --> PhoneChoseServlet.java (处理list发来的请求，与数据库进行交互，结果在detail.jsp 页面显示出来) (未实现)
+	 --> PoneDetail.jsp(将 detail.jsp 获取到的数据库数据进行显示)
+	 --> PhoneBuyServlet.java (处理，将需要添加入购物车的商品加入购物车，如果之前已经存在，商品数量加一，其他不变)
+```
+	 
 
 =================================================================
 
 ### JSP : java server page
 #### functions : 
+#### 学生管理系统
+##### user用户登录查看学生信息： 
+	login.jsp -- > loginServlet.java --> stu_list.jsp
 
->  [示例:] (/WebWay/src/learn/servlet/test/TestServletConfig.java)
+- 出现的问题： 
+	本身以为挺简单的一个登陆demo，没想到在文件存取路径上吃了亏，在此总结下
+
+> web工程 读取文件用两种方式，
+
+> 一种servletContext 的方式：
+	String path = context.getRealPath("TestServletContext.java");
+	InputStream in = context.getResourceAsStream("file/readme.md");
+> 另一种是 类加载器的方式读取： 	
+InputStream in = DButil.class.getClassLoader().getResourceAsStream("jdbc.properties"); 
+		
+	
+>  [link:http://localhost:8080/WebWay/StuManager/Login.jsp] (http://localhost:8080/WebWay/StuManager/Login.jsp)
 
 =================================================================
 

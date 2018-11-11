@@ -1,4 +1,4 @@
-package learn.demo.HistoryVisited;
+package demo.HistoryVisited;
 
 import java.io.IOException;
 
