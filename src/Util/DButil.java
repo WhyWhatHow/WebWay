@@ -11,7 +11,13 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import org.junit.Test;
-
+/*
+ * JDBC 实现的工具类
+ *  open(): 获取连接
+ *  close(): 关闭连接
+ *  backup()： 备份数据库
+ *  load（）： 加载数据库
+ */
 public class DButil {
 
 	static String driverClass = null;

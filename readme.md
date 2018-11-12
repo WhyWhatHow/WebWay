@@ -190,10 +190,8 @@
 ```
 	 
 
-=================================================================
 
 ### JSP : java server page
-#### functions : 
 #### 学生管理系统
 ##### user用户登录查看学生信息： 
 	login.jsp -- > loginServlet.java --> stu_list.jsp
@@ -212,39 +210,36 @@ InputStream in = DButil.class.getClassLoader().getResourceAsStream("jdbc.propert
 	
 >  [link:http://localhost:8080/WebWay/StuManager/Login.jsp] (http://localhost:8080/WebWay/StuManager/Login.jsp)
 
-=================================================================
 
-### EL:
-#### functions : 
+### 装饰者模式：
+> 优点：实现了面向接口编程
+> 缺点： 程序无用函数过多， 引出动态代理 方法 实现
+> 子我理解就是用自己生成的类对象直接继承需要修改的接口，对自己想添加功能的方法进行DIY设计，然后调用接口时调用继承类实现。
 
->  [示例:] (/WebWay/src/learn/servlet/test/TestServletConfig.java)
-
-=================================================================
-### JSTL: java server page standered lib
-#### functions : 
-
->  [示例:] (/WebWay/src/learn/servlet/test/TestServletConfig.java)
-
-=================================================================
-### 事务： 
-#### functions : 
-
-=================================================================
+```
+	//interface A -- class A(对需要的接口方法加以修改，使之成为自己的方法)
+	userDao userDao = new UserImpl(); // userDao  interface特点  实现面向接口编程 
+```
 ### JDBC： 
-#### functions : 
+- Code Location : 
+> /WebWay/src/Util/DButil.java
 
-=================================================================
-### databaseSourse： 
-#### functions : 
+### MyDataBaseSoure：  
+- 自定义的数据库连接池，使用装饰者模式生成类ConnectionWrap 实现 面向接口编程
+- codeLocation: 
+> /WebWay/src/Util/MyDataSourse.java|ConnectionWrap.java
+- Test :
+> /WebWay/src/test/MyDataSourseTest.java
 
-=================================================================
 #### DBCP:
-##### functions : 
+-codeLocation： 
+> /WebWay/src/test/DBCPTest.java
 
-=================================================================
 #### C3P0: 
-##### functions : 
-
+查官方文档，是王道，
+引申 ：druid
+-codeLocation： 
+> /WebWay/src/test/DBCPTest.java
 =================================================================
 ### DButils: 
 #### functions : 
