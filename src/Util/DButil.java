@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import org.junit.Test;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 /*
  * JDBC 实现的工具类
  *  open(): 获取连接
@@ -19,35 +21,46 @@ import org.junit.Test;
  *  load（）： 加载数据库
  */
 public class DButil {
-
-	static String driverClass = null;
-	static String url = null;
-	static String user = null;
-	static String password = null;
+	
+	static ComboPooledDataSource dataSource = null;
 	static {
-		try {
-			Properties properties = new Properties();
-			//类加载器的方式，
-			InputStream in = DButil.class.getClassLoader().getResourceAsStream("jdbc.properties"); 
-			
-//			FileReader in = new FileReader("./jdbc.properties"); // 不成功 ，获取文件路径失败
-			properties.load(in);
-		
-			driverClass = properties.getProperty("driverClass");
-			url = properties.getProperty("url");
-			user = properties.getProperty("name");
-			password = properties.getProperty("password");
-		} catch (Exception e) {
-		}
+		dataSource = new ComboPooledDataSource("mysql");
 	}
+	// 为引入数据库连接池的写法
+//	static String driverClass = null;
+//	static String url = null;
+//	static String user = null;
+//	static String password = null;
+//	static {
+//		try {
+//			Properties properties = new Properties();
+//			//类加载器的方式，
+//			InputStream in = DButil.class.getClassLoader().getResourceAsStream("jdbc.properties"); 
+//			
+////			FileReader in = new FileReader("./jdbc.properties"); // 不成功 ，获取文件路径失败
+//			properties.load(in);
+//		
+//			driverClass = properties.getProperty("driverClass");
+//			url = properties.getProperty("url");
+//			user = properties.getProperty("name");
+//			password = properties.getProperty("password");
+//		} catch (Exception e) {
+//		}
+//	}
 	// java 实训代码
 	public static Connection open() {
+//		try {
+//			Class.forName(driverClass);
+//			return DriverManager.getConnection(url, user, password);
+//			
+//		}catch (Exception e) {
+//			System.out.println("can't link to DataBase");
+//			e.printStackTrace();
+//		}
+//		return null ;
 		try {
-			Class.forName(driverClass);
-			return DriverManager.getConnection(url, user, password);
-			
-		}catch (Exception e) {
-			System.out.println("can't link to DataBase");
+			return dataSource.getConnection();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null ;

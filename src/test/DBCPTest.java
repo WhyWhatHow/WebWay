@@ -1,17 +1,20 @@
 package test;
 
-import java.beans.PropertyVetoException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.dbcp.BasicDataSourceFactory;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.junit.Test;
 /*
  * DBCP 的测试： 
@@ -48,11 +51,50 @@ import org.junit.Test;
  */
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import Util.DButil;
+import jdk.nashorn.internal.runtime.linker.LinkerCallSite;
+import test.Bean.User;
 
 public class DBCPTest {
-	/*
+	
+	@Test
+	public void testDButils() {
+		// insert
+		QueryRunner queryRunner = new QueryRunner(new ComboPooledDataSource("mysql"));
+		try {
+			// insert 
+			queryRunner.update("insert into user values(?,?)", "lucy", "528lucy");
+
+//			User user = queryRunner.query("select * from user where id = ? ", new BeanHandler<User>(User.class),
+//					"admin");
+
+			// update
+			queryRunner.update("update user set password =?  ", "123456");
+			// add lucy 
+			System.out.println("==========add Lucy =========");
+			// select
+			List<User> list = queryRunner.query("select * from user", new BeanListHandler<User>(User.class));
+			for (User user : list) {
+				System.out.println(user);
+			}
+			// delete
+			queryRunner.update("delete from user where id = ? ","lucy");
+			list.clear();
+			list = queryRunner.query("select * from user ", new BeanListHandler<User>(User.class));
+			System.out.println("==========Delete Lucy =========");
+			
+			for (User user : list) {
+				System.out.println(user);
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	/* c3p0 Api : 
 	 * API: ComboPooledDataSource cpds = new ComboPooledDataSource();
 	 * cpds.setDriverClass( "org.postgresql.Driver" ); //loads the jdbc driver
 	 * cpds.setJdbcUrl( "jdbc:postgresql://localhost/testdb" );
@@ -94,16 +136,16 @@ public class DBCPTest {
 		}
 	}
 
-	@Test// xml 文件默认位置应该为src 文件夹下
+	@Test // xml 文件默认位置应该为src 文件夹下
 	public void testCp0WithXML() {
 
 		// 默认会找 xml 中的 default-config 分支。
 		ComboPooledDataSource dataSource = new ComboPooledDataSource("mysql");// xml 文件默认位置应该为src 文件夹下
-		 if (dataSource == null) {
-			 System.out.println("it's null ======================");
-		 }else {
-			 System.out.println(dataSource.toString());
-		 }
+		if (dataSource == null) {
+			System.out.println("it's null ======================");
+		} else {
+			System.out.println(dataSource.toString());
+		}
 		// 2. 设置连接数据的信息
 		try {
 			// 2. 得到连接对象
@@ -120,6 +162,7 @@ public class DBCPTest {
 			e.printStackTrace();
 		}
 	}
+
 	@Test
 	public void testDBCPWithoutProperties() { // 不使用配置文件配置形式
 
