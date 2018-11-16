@@ -8,68 +8,28 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Properties;
 
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
+import javax.sql.DataSource;
+
 import org.junit.Test;
-import org.junit.experimental.theories.Theories;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import com.sun.org.glassfish.external.statistics.Statistic;
 /*
  * JDBC 实现的工具类
- *  open(): 获取连接
+ *  getConnection(): 获取连接
  *  close(): 关闭连接
  *  backup()： 备份数据库
  *  load（）： 加载数据库
  */
-
-import test.Bean.User;
-public class DButil {
+public class JDBCUtil {
 	
 	static ComboPooledDataSource dataSource = null;
+
 	static {
 		dataSource = new ComboPooledDataSource("mysql");
 	}
-	// 为引入数据库连接池的写法
-//	static String driverClass = null;
-//	static String url = null;
-//	static String user = null;
-//	static String password = null;
-//	static {
-//		try {
-//			Properties properties = new Properties();
-//			//类加载器的方式，
-//			InputStream in = DButil.class.getClassLoader().getResourceAsStream("jdbc.properties"); 
-//			
-////			FileReader in = new FileReader("./jdbc.properties"); // 不成功 ，获取文件路径失败
-//			properties.load(in);
-//		
-//			driverClass = properties.getProperty("driverClass");
-//			url = properties.getProperty("url");
-//			user = properties.getProperty("name");
-//			password = properties.getProperty("password");
-//		} catch (Exception e) {
-//		}
-//	}
-	public static ComboPooledDataSource getDataBase() {
-		return dataSource;
-	}
-	public static Connection open() {
-		// java 实训代码
-		
-//		try {
-//			Class.forName(driverClass);
-//			return DriverManager.getConnection(url, user, password);
-//			
-//		}catch (Exception e) {
-//			System.out.println("can't link to DataBase");
-//			e.printStackTrace();
-//		}
-//		return null ;
+	public static Connection getConnection() {
 		try {
 			return dataSource.getConnection();
 		} catch (SQLException e) {
@@ -165,13 +125,21 @@ public class DButil {
 //	}
 	@Test
 	public void rn() {
-			QueryRunner queryRunner= new QueryRunner(DButil.getDataBase());
-			try {
-			List<User> list = queryRunner.query("select * from user", new BeanListHandler<User>(User.class));
-			 for (User user : list) {
-				System.out.println(user);
+		Connection con = null; 
+		PreparedStatement pe = null;
+		ResultSet rs  = null ;
+		String sql = "select * from user";
+		con =JDBCUtil.getConnection();
+		try {
+			pe = con.prepareStatement(sql);
+			rs= pe.executeQuery();
+			while(rs.next()) {
+				String userID = rs.getString(1);
+				String password =rs.getString(2);
+				System.out.println(userID+" "+ password);
 			}
-			} catch (SQLException e) {
+		} catch (SQLException e) {
+			
 			e.printStackTrace();
 		}
 	}

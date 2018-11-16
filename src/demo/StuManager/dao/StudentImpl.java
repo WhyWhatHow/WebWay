@@ -7,7 +7,11 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.junit.Test;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import Util.DButil;
 import demo.StuManager.domain.Student;
@@ -31,7 +35,10 @@ public class StudentImpl implements StudentDao {
 				int age = rs.getInt(4);
 				String address = rs.getString(5);
 				String tel = rs.getString(6);
-				list.add(new Student(id, name, gender, tel, address, age));
+				String hobby = rs.getString(7);
+				String info = rs.getString(8);
+				String brithday = rs.getString(9); // TODO 出错点
+//				list.add(new Student(id, name, gender, tel, address, tel,hobby,info,brithday,age));
 			}
 			return list;
 		} catch (SQLException e) {
@@ -42,12 +49,63 @@ public class StudentImpl implements StudentDao {
 		return null;
 	}
 
-	@Test
-	public void run() {
-		List<Student> list = findAll();
-		for (Student student : list) {
-			System.out.println(student);
-		}
+	@Override
+	public List<Student> findByGender() {
+		
+		return null;
+	}
+
+	@Override
+	public List<Student> findByName(String name) throws SQLException { // like 查找
+		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
+		return queryRunner.query("select * from student where sname like  ?", new BeanListHandler<Student>(Student.class),"%"+name+"%");
+	}
+
+	@Override
+	public void add(Student stu) throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
+		queryRunner.update(
+				"insert into student(sname,age,address,gender,birthday,info,tel,hobby) values (?,?,?,?,?,?,?,?)",
+				stu.getName(), stu.getAge(), stu.getAddress(), stu.getGender(), stu.getBirthday(), stu.getInfo(),
+				stu.getTel(), stu.getHobby());
+	}
+
+	@Override
+	public void delete(int sid) throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
+		queryRunner.update("delete student where sid = ? ", sid);
+
+	}
+
+	@Override
+	public void update(Student stu) throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
+		queryRunner.update(
+				"update student set sname =? ,age = ? ,gender = ?,address  =? ,tel =? ,hobby =? ,info =?  ,brithday =?",
+				stu.getName(), stu.getAge(), stu.getGender(), stu.getAddress(), stu.getTel(), stu.getHobby(),
+				stu.getInfo(), stu.getBirthday());
+
+	}
+
+	@Override
+	public Student findBySid(int sid) throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
+		return queryRunner.query("select * from student where sid = ?", new BeanHandler<Student>(Student.class), sid);
+
+	}
+
+	@Override
+	public List<Student> findByStudent() {
+		
+		
+		return null;
+	}
+
+	@Override
+	public List<Student> search(String sql) throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
+		return queryRunner.query(sql, new BeanListHandler<Student>(Student.class));
+		
 	}
 
 }
