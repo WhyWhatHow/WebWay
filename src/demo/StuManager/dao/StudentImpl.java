@@ -10,8 +10,7 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
+import org.junit.Test;
 
 import Util.DButil;
 import demo.StuManager.domain.Student;
@@ -51,14 +50,15 @@ public class StudentImpl implements StudentDao {
 
 	@Override
 	public List<Student> findByGender() {
-		
+
 		return null;
 	}
 
 	@Override
 	public List<Student> findByName(String name) throws SQLException { // like 查找
 		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
-		return queryRunner.query("select * from student where sname like  ?", new BeanListHandler<Student>(Student.class),"%"+name+"%");
+		return queryRunner.query("select * from student where sname like  ?",
+				new BeanListHandler<Student>(Student.class), "%" + name + "%");
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class StudentImpl implements StudentDao {
 		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
 		queryRunner.update(
 				"insert into student(sname,age,address,gender,birthday,info,tel,hobby) values (?,?,?,?,?,?,?,?)",
-				stu.getName(), stu.getAge(), stu.getAddress(), stu.getGender(), stu.getBirthday(), stu.getInfo(),
+				stu.getSname(), stu.getAge(), stu.getAddress(), stu.getGender(), stu.getBirthday(), stu.getInfo(),
 				stu.getTel(), stu.getHobby());
 	}
 
@@ -82,7 +82,7 @@ public class StudentImpl implements StudentDao {
 		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
 		queryRunner.update(
 				"update student set sname =? ,age = ? ,gender = ?,address  =? ,tel =? ,hobby =? ,info =?  ,brithday =?",
-				stu.getName(), stu.getAge(), stu.getGender(), stu.getAddress(), stu.getTel(), stu.getHobby(),
+				stu.getSname(), stu.getAge(), stu.getGender(), stu.getAddress(), stu.getTel(), stu.getHobby(),
 				stu.getInfo(), stu.getBirthday());
 
 	}
@@ -96,16 +96,41 @@ public class StudentImpl implements StudentDao {
 
 	@Override
 	public List<Student> findByStudent() {
-		
-		
+
 		return null;
 	}
 
 	@Override
 	public List<Student> search(String sql) throws SQLException {
+
 		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
 		return queryRunner.query(sql, new BeanListHandler<Student>(Student.class));
-		
+
+	}
+
+	@Test
+	public void run() {
+		try {
+//			List<Student> list = search("select * from student");
+//			for (Student student : list) {
+//				System.out.println(student);
+//		}
+			Student student = findBySid(1);
+			System.out.println(student);
+
+		} catch (Exception e) {
+			System.out.println("========" + e.getMessage());
+
+		}
+	}
+	@Test
+	public void run_2() throws SQLException{
+		System.out.println("===========delete by sid ============");
+		delete(7);
+		Student student  =findBySid(7); 
+				
+		System.out.println(student);
+		System.out.println("====================");
 	}
 
 }

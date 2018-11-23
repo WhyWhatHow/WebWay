@@ -2,7 +2,7 @@
 > 记录自己在学完网课后的代码实践，其中不乏有一些相对较为简单的案例，本文档的作用类似于目录章节的作用，记录java web 的学习步骤。
 - author : WhyWhatHow
 - Finished：Cookie 
-- TODO: Jsp
+- TODO: MVC addStudentServlet 可以优化
 - Mind Map: [link](http://naotu.baidu.com/file/19f3ff42c9d50661fdb96be77836a071?token=5d54b9a7269664f4)
 - notice : the thing i wrote may wrong, if wrong, just feed back!
 --- ---
@@ -195,10 +195,12 @@
 #### 学生管理系统
 ##### user用户登录查看学生信息： 
 	login.jsp -- > loginServlet.java --> stu_list.jsp
-
+#### problems:
+- 登陆速度太慢：
+> 根本原因是以为自己的工具类DBUtil.java 文件导入一个错误jar包引起的，删除后，不存在这个问题。
 - 出现的问题： 
 	本身以为挺简单的一个登陆demo，没想到在文件存取路径上吃了亏，在此总结下
-
+- c3p0 ,dbutils 之间的问题： 
 > web工程 读取文件用两种方式，
 
 > 一种servletContext 的方式：

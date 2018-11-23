@@ -15,7 +15,7 @@
 		<td colspan=10 >
 		 Search By Name: <input type= "text"> 
 		 Search By Gender: <select><option>--Chose --</option>
-		 <option>  boy</option><option>  girl</option></select>
+		 <option>  male	</option><option>  female</option></select>
 		 <button> GO </button>  <!--  js 添加点击事件 -->
 		 <a href ="addStudent.jsp">add new line ?</a> <!-- 跳转到增加student记录界面 -->
 		</td>
@@ -36,7 +36,7 @@
 		<c:forEach var="stu" items="${list }">
 			<tr>
 				<td>${stu.sid }</td>
-				<td>${stu.name }</td>
+				<td>${stu.sname }</td>
 				<td>${stu.gender}</td>
 				<td>${stu.birthday}</td>
 				<td>${stu.age }</td>
@@ -45,8 +45,8 @@
 				<td>${stu.hobby }</td>
 				<td>${stu.info }</td>
 				<td>
-				<a href ="UpdateServlet?sid=${stu.sid}>">Update</a>
-				 <a href ="DeleteServlet?sid=${stu.sid }">delete</a>
+				<a href ="/WebWay/UpdateStudentServlet?sid=${stu.sid}>">Update</a>
+				 <a href ="/WebWay/DeleteStudentServlet?sid=${stu.sid}">delete</a>
 				 </td>
 
 			</tr>

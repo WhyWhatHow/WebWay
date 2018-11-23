@@ -31,7 +31,7 @@
 
 		<!-- intergalactoApp adopts a different approach to configuring statement 
 			caching -->
-		<property name="maxStatements">0</property>
+		<property name="maxStatements">10</property>
 		<property name="maxStatementsPerConnection">5</property>
 
 		<!-- he's important, but there's only one of him -->
@@ -39,7 +39,7 @@
 			<property name="acquireIncrement">1</property>
 			<property name="initialPoolSize">1</property>
 			<property name="minPoolSize">1</property>
-			<property name="maxPoolSize">5</property>
+			<property name="maxPoolSize">10</property>
 			<property name="maxStatementsPerConnection">50</property>
 		</user-overrides>
 </named-config>

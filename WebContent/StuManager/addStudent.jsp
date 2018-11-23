@@ -10,16 +10,24 @@
 	<center>
 		<h1>Add New One</h1>
 
-		<form action="AddStudentServelt">
+		<form action="/WebWay/AddStudentServlet" method="post">
 			<table border=1>
 				<tr>
 					<td>Name:</td>
-					<td><input type="text" name="name"></td>
+					<td><input type="text" name="sname"></td>
 				</tr>
 				<tr>
 					<td>Gender:</td>
-					<td><input type="radio" name="gender" value="boy" checked="checked">Boy
-						<input type="radio" name="gender" value="girl">Girl</td>
+					<td><input type="radio" name="gender" value="male" checked="checked">Boy
+						<input type="radio" name="gender" value="female">Girl</td>
+				</tr>
+				<tr>
+					<td>Age:</td>
+					<td><input type="text" name="age"></td>
+				</tr>
+				<tr>
+					<td>Address:</td>
+					<td><input type="text" name="address"></td>
 				</tr>
 				<tr>
 					<td>TelPhone:</td>
@@ -42,12 +50,12 @@
 				</tr>
 				<tr>
 					<td>Information:</td>
-					<td><textarea rows="3" cols="80"></textarea></td>
+					<td><textarea name = "info" rows="3" cols="80"></textarea></td>
 				</tr>
 				<tr colspan =2>
-					<td ><input type="submit" value="add new line "></td>
+					<td ><input type="submit" value="add new line "  ></td>
+ 
 				</tr>
-
 			</table>
 		</form>
 		<a href="index.html"><button>Go Home</button></a>

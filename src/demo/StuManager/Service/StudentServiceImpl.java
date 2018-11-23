@@ -4,24 +4,31 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.junit.Test;
+
 import demo.StuManager.dao.StudentDao;
 import demo.StuManager.dao.StudentImpl;
 import demo.StuManager.domain.Student;
 
 public class StudentServiceImpl implements StudentService {
 
+	
 	@Override
 	public List<Student> search(String name, String gender) {
 		String sql = "select * from student where 1=1 ";
 		List<Student> list = new LinkedList<>();
 		StudentDao dao = new StudentImpl();
 		if (name != null) {
+
 			name = "and sname like %" + name + "%";
+			sql = sql + name;
 		}
-		if (gender.equals("boy") || gender.equals("girl")) { // 需要排除 请悬着的情况
-			gender = "and gender = " + gender;
+		if (gender != null) {
+			if (gender.equals("male") || gender.equals("female")) { // 需要排除 请悬着的情况
+				gender = "and gender = " + gender;
+				sql = sql + gender;
+			}
 		}
-		sql = sql + name + gender;
 		try {
 			list = dao.search(sql);
 		} catch (SQLException e) {
@@ -61,6 +68,13 @@ public class StudentServiceImpl implements StudentService {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+	}
+	@Test
+	public void run() {
+		List<Student> list = search(null, null);
+		for (Student student : list) {
+			System.out.println(student);
 		}
 	}
 }

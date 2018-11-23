@@ -21,7 +21,7 @@
 	<named-config name="stumanager">
 	    <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
 	    <property name="jdbcUrl">jdbc:mysql://localhost/stumanager</property>
-		<property name="user">root</property>
+		<property name="username">root</property>
 		<property name="password">aa12321.</property>
 
 		<property name="acquireIncrement">50</property>
