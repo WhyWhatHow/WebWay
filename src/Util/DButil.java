@@ -2,30 +2,15 @@ package Util;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Properties;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.junit.Test;
-import org.junit.experimental.theories.Theories;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import com.sun.org.glassfish.external.statistics.Statistic;
-/*
- * JDBC 实现的工具类
- *  open(): 获取连接
- *  close(): 关闭连接
- *  backup()： 备份数据库
- *  load（）： 加载数据库
- */
 
 import test.Bean.User;
 public class DButil {
@@ -55,6 +40,7 @@ public class DButil {
 //		} catch (Exception e) {
 //		}
 //	}
+	
 	public static ComboPooledDataSource getDataBase() {
 		return dataSource;
 	}
@@ -157,12 +143,6 @@ public class DButil {
 		}
 		return false;
 	}
-
-
-//	@Test
-//	 public void run() {
-//		System.out.println(url + user + password);
-//	}
 	@Test
 	public void rn() {
 			QueryRunner queryRunner= new QueryRunner(DButil.getDataBase());

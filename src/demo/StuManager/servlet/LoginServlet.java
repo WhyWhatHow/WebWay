@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 		boolean yes = userDao.loginIn(username, password);
 		if (yes) { // 登陆成功
 			System.out.println("========================Login in =======================");
-
+			response.sendRedirect("/WebWay/StuManager/index.html");
 		}
 		else {
 			String result = "Sorry, userName or password doesn't work ";
