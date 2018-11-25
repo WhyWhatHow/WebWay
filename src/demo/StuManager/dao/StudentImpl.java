@@ -12,46 +12,25 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.junit.Test;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import Util.DButil;
 import demo.StuManager.domain.Student;
 
 public class StudentImpl implements StudentDao {
 
 	@Override
-	public List<Student> findAll() {
-		List<Student> list = new LinkedList();
-		Connection con = DButil.open();
-		ResultSet rs = null;
-		PreparedStatement ps = null;
-		String sql = "select sid,sname,gender,sage,address,tel from student ";
-		try {
-			ps = con.prepareStatement(sql);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				int id = rs.getInt(1);
-				String name = rs.getString(2);
-				String gender = rs.getString(3);
-				int age = rs.getInt(4);
-				String address = rs.getString(5);
-				String tel = rs.getString(6);
-				String hobby = rs.getString(7);
-				String info = rs.getString(8);
-				String brithday = rs.getString(9); // TODO 出错点
-//				list.add(new Student(id, name, gender, tel, address, tel,hobby,info,brithday,age));
-			}
-			return list;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DButil.close(con);
-		}
-		return null;
+	public List<Student> findAll() throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
+		return queryRunner.query("select * from student ", new BeanListHandler<Student>(Student.class));
+
 	}
 
 	@Override
-	public List<Student> findByGender() {
-
-		return null;
+	public List<Student> findByPage(int currentPage) throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
+		return queryRunner.query("select * from student limit ? offset ?", new BeanListHandler<Student>(Student.class),
+				PAGE_SIZE, (currentPage - 1) * PAGE_SIZE);
 	}
 
 	@Override
@@ -73,17 +52,16 @@ public class StudentImpl implements StudentDao {
 	@Override
 	public void delete(int sid) throws SQLException {
 		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
-		queryRunner.update("delete student where sid = ? ", sid);
+		queryRunner.update("delete from student where sid=?", sid);
 
 	}
 
 	@Override
 	public void update(Student stu) throws SQLException {
 		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
-		queryRunner.update(
-				"update student set sname =? ,age = ? ,gender = ?,address  =? ,tel =? ,hobby =? ,info =?  ,brithday =?",
-				stu.getSname(), stu.getAge(), stu.getGender(), stu.getAddress(), stu.getTel(), stu.getHobby(),
-				stu.getInfo(), stu.getBirthday());
+		String sql = "update student set sname =? ,age = ? ,gender = ?,address  =? ,tel =? ,hobby =? ,info =?  ,birthday =? where sid =?";
+		queryRunner.update(sql, stu.getSname(), stu.getAge(), stu.getGender(), stu.getAddress(), stu.getTel(),
+				stu.getHobby(), stu.getInfo(), stu.getBirthday(), stu.getSid());
 
 	}
 
@@ -120,16 +98,15 @@ public class StudentImpl implements StudentDao {
 
 		} catch (Exception e) {
 			System.out.println("========" + e.getMessage());
-
 		}
 	}
+
 	@Test
-	public void run_2() throws SQLException{
+	public void run_2() throws SQLException {
 		System.out.println("===========delete by sid ============");
-		delete(7);
-		Student student  =findBySid(7); 
-				
+		Student student = findBySid(7);
 		System.out.println(student);
+		delete(7);
 		System.out.println("====================");
 	}
 

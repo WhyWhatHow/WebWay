@@ -1,3 +1,4 @@
+
 ##  what's it using ? 
 > 记录自己在学完网课后的代码实践，其中不乏有一些相对较为简单的案例，本文档的作用类似于目录章节的作用，记录java web 的学习步骤。
 - author : WhyWhatHow
@@ -8,6 +9,13 @@
 --- ---
 ## java web
 --- ---
+### TODO:
+#### Q_1: -c3p0 读文件的形式连接数据库是否会导致过多的io操作，进而影响程序的运行速度？c3p0的配置文件的相关参数的正确用法？
+
+#### T_1: jstl 正确用法，知识面太过低下
+
+#### T_2: jquery 的代码量 
+
 ### servlet 
 #### servlet life-time：
 ##### functions : 
@@ -25,8 +33,8 @@
 	<load-on-startup>2</load-on-startup>
 >  [示例] (/WebWay/src/learn/servlet/test/TestServletStart.java)
 
-#### servletConfig ：sometimes
-##### functions : 
+### servletConfig ：sometimes
+#### functions : 
 >   servletConfig 示例:： 
 ```java
    ServletConfig  config =getServletConfig(); // 获取servletConfig；
@@ -39,11 +47,11 @@
 
 
 
-#### servletContext : usually 
+### servletContext : usually 
 
 > 周期： 同 servlet  
 > web 工程共享一个servletContext，即对一个web工程，servletContext 唯一。
-##### functions : 
+#### functions : 
 
    -  1. 获取全局参数
 
@@ -196,11 +204,65 @@
 ##### user用户登录查看学生信息： 
 	login.jsp -- > loginServlet.java --> stu_list.jsp
 #### problems:
-- 登陆速度太慢：
-> 根本原因是以为自己的工具类DBUtil.java 文件导入一个错误jar包引起的，删除后，不存在这个问题。
-- 出现的问题： 
-	本身以为挺简单的一个登陆demo，没想到在文件存取路径上吃了亏，在此总结下
-- c3p0 ,dbutils 之间的问题： 
+##### 数据库连接过程过慢：
+- 根本原因是自己的c3p0-config.xml 文件中一起的错误，鉴于自己当前知识有限，以及自己对于项目的理解能力不到位，在不追究，先给出参考答案（单纯的考虑数据库连接池方面的配置）
+> ans:
+
+```
+<c3p0-config>
+	<default-config>
+		<property name="initialPoolSize">3</property>
+		<property name="maxIdleTime">60</property>
+		<property name="maxPoolSize">15</property>
+		<property name="minPoolSize">3</property>
+		<property name="maxStatements">15</property>
+	</default-config>
+
+	<!-- This app is massive! -->
+	<named-config name="mysql">
+		<property name="driverClass">com.mysql.cj.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql://localhost/stumanager</property>
+		<property name="user">root</property>
+		<property name="password">aa12321.</property>
+		<property name="initialPoolSize">10</property>
+		<property name="maxIdleTime">30</property>
+		<property name="maxPoolSize">100</property>
+		<property name="minPoolSize">10</property>
+		<property name="maxStatements">200</property>
+	</named-config>
+</c3p0-config>
+
+```
+##### jstl面对的问题：
+
+```
+	
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+	
+	<c:if test="${stu.gender=='female'}">checked</c:if>>female
+	
+	<input type="checkbox" name="hobby" value="sports"
+	<c:if test="${fn:contains(stu.hobby,'sports')}">checked </c:if>>sports
+```
+
+- reflect: 没有阅读过官方文档，对这个知识了解的太少，太过皮毛，看api文档写代码的速度简直令人发指， 凸显出问题：知识面匮乏，
+
+#### request 太多的 parameters:
+- ans : commons-beanutils.jar , commons-logging-1.1.1.jar 
+- MyDateConverter.java :  /WebWay/src/Util/MyDateConverter.java
+```
+
+	ConvertUtils.register(new MyDateConverter(), Date.class); // 注册java.util.date 类
+	Map map = request.getParameterMap();
+	Student stu = new Student();
+	BeanUtils.populate(stu, map); // 赋值
+			
+```
+
+
+#### 补充：
+
 > web工程 读取文件用两种方式，
 
 > 一种servletContext 的方式：
@@ -209,7 +271,7 @@
 > 另一种是 类加载器的方式读取： 	
 InputStream in = DButil.class.getClassLoader().getResourceAsStream("jdbc.properties"); 
 		
-	
+			
 >  [link:http://localhost:8080/WebWay/StuManager/Login.jsp] (http://localhost:8080/WebWay/StuManager/Login.jsp)
 
 

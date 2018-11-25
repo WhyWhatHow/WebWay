@@ -4,36 +4,30 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.junit.Test;
-
 import demo.StuManager.dao.StudentDao;
 import demo.StuManager.dao.StudentImpl;
 import demo.StuManager.domain.Student;
 
 public class StudentServiceImpl implements StudentService {
 
-	
 	@Override
-	public List<Student> search(String name, String gender) {
+	public List<Student> search(String name, String gender) throws SQLException {
 		String sql = "select * from student where 1=1 ";
 		List<Student> list = new LinkedList<>();
 		StudentDao dao = new StudentImpl();
-		if (name != null) {
+		if (name != null&& !name.equals("")) {
 
-			name = "and sname like %" + name + "%";
+			name = "and sname like '%" + name + "%' ";
 			sql = sql + name;
 		}
 		if (gender != null) {
 			if (gender.equals("male") || gender.equals("female")) { // 需要排除 请悬着的情况
-				gender = "and gender = " + gender;
+				gender = "and gender = '" + gender+"'";
 				sql = sql + gender;
 			}
 		}
-		try {
 			list = dao.search(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return list;
 	}
 
@@ -58,23 +52,18 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public void update(int sid) {
+	public void update(Student stu) throws SQLException {
 
 		StudentDao studentDao = new StudentImpl();
-		try {
-			Student student = studentDao.findBySid(sid);
-			if (student != null) { // 根据用户列表返回数据不会存在空这种情况
-				studentDao.update(student);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		studentDao.update(stu);
 	}
-	@Test
-	public void run() {
-		List<Student> list = search(null, null);
-		for (Student student : list) {
-			System.out.println(student);
-		}
+
+
+
+	@Override
+	public Student searchBySid(int sid) throws SQLException {
+		StudentDao dao = new StudentImpl();
+		return dao.findBySid(sid);
 	}
+
 }

@@ -209,13 +209,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>UpdateServlet</display-name>
-    <servlet-name>UpdateServlet</servlet-name>
-    <servlet-class>demo.StuManager.servlet.UpdateServlet</servlet-class>
+    <display-name>UpdateStudentServlet</display-name>
+    <servlet-name>UpdateStudentServlet</servlet-name>
+    <servlet-class>demo.StuManager.servlet.UpdateStudentServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>UpdateServlet</servlet-name>
-    <url-pattern>/UpdateServlet</url-pattern>
+    <servlet-name>UpdateStudentServlet</servlet-name>
+    <url-pattern>/UpdateStudentServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -226,5 +226,25 @@
   <servlet-mapping>
     <servlet-name>DeleteStudentServlet</servlet-name>
     <url-pattern>/DeleteStudentServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditStudentServlet</display-name>
+    <servlet-name>EditStudentServlet</servlet-name>
+    <servlet-class>demo.StuManager.servlet.EditStudentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditStudentServlet</servlet-name>
+    <url-pattern>/EditStudentServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchStudentServlet</display-name>
+    <servlet-name>SearchStudentServlet</servlet-name>
+    <servlet-class>demo.StuManager.servlet.SearchStudentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchStudentServlet</servlet-name>
+    <url-pattern>/SearchStudentServlet</url-pattern>
   </servlet-mapping>
 </web-app>

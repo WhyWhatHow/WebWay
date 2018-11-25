@@ -9,8 +9,9 @@ import sun.reflect.generics.tree.VoidDescriptor;
 
 public interface StudentDao {
 
-	List<Student> findAll();
-	List<Student> findByGender();
+	int PAGE_SIZE=5;
+	List<Student> findAll() throws SQLException;
+	List<Student> findByPage(int currentPage) throws SQLException;
 	List<Student> findByName(String name ) throws SQLException;
 	Student findBySid(int sid) throws SQLException;
 	List<Student> findByStudent();
