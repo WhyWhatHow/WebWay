@@ -247,4 +247,14 @@
     <servlet-name>SearchStudentServlet</servlet-name>
     <url-pattern>/SearchStudentServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>StudentPageListServlet</display-name>
+    <servlet-name>StudentPageListServlet</servlet-name>
+    <servlet-class>demo.StuManager.servlet.StudentPageListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StudentPageListServlet</servlet-name>
+    <url-pattern>/StudentPageListServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

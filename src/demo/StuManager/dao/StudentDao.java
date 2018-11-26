@@ -15,6 +15,7 @@ public interface StudentDao {
 	List<Student> findByName(String name ) throws SQLException;
 	Student findBySid(int sid) throws SQLException;
 	List<Student> findByStudent();
+	int findStudentNum() throws SQLException;
 	void add(Student stu) throws SQLException ;
 	void delete(int sid ) throws SQLException;
 	void update(Student stu) throws SQLException;

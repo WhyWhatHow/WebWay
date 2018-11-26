@@ -3,6 +3,7 @@ package demo.StuManager.Service;
 import java.sql.SQLException;
 import java.util.List;
 
+import demo.StuManager.domain.Page;
 import demo.StuManager.domain.Student;
 
 public interface StudentService {
@@ -11,4 +12,5 @@ public interface StudentService {
 	 void delete(int sid );
 	 void update(Student stu) throws SQLException;
 	 Student searchBySid(int sid ) throws SQLException;
+	 Page<Student> findByPage(int currentPage) throws SQLException;
 }

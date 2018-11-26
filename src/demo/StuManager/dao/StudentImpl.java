@@ -1,18 +1,13 @@
 package demo.StuManager.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.junit.Test;
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import Util.DButil;
 import demo.StuManager.domain.Student;
@@ -80,7 +75,6 @@ public class StudentImpl implements StudentDao {
 
 	@Override
 	public List<Student> search(String sql) throws SQLException {
-
 		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
 		return queryRunner.query(sql, new BeanListHandler<Student>(Student.class));
 
@@ -89,10 +83,6 @@ public class StudentImpl implements StudentDao {
 	@Test
 	public void run() {
 		try {
-//			List<Student> list = search("select * from student");
-//			for (Student student : list) {
-//				System.out.println(student);
-//		}
 			Student student = findBySid(1);
 			System.out.println(student);
 
@@ -104,10 +94,16 @@ public class StudentImpl implements StudentDao {
 	@Test
 	public void run_2() throws SQLException {
 		System.out.println("===========delete by sid ============");
-		Student student = findBySid(7);
-		System.out.println(student);
-		delete(7);
+
+		Object res = findStudentNum();
+		System.out.println(res);
 		System.out.println("====================");
 	}
 
+	@Override
+	public int findStudentNum() throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
+		Object res =queryRunner.query("select  count(*) from student", new ScalarHandler());
+		return Integer.parseInt(res.toString()) ;
+	}
 }

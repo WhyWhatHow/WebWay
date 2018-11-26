@@ -23,19 +23,20 @@ public class StudentListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 //		System.out.println("=============================studentlistservlet================");
-		HttpSession session = request.getSession();
-		StudentService service = new StudentServiceImpl();
-		try {
-			List<Student> list = (List<Student>) session.getAttribute("list");
-			list = service.search(null, null);
-			if (list == null) {
-				System.out.println("=========================nullllllllll=====================");
-			}
-			session.setAttribute("list", list);
-			response.sendRedirect("/WebWay/StuManager/Stu_List.jsp");
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+//		HttpSession session = request.getSession();
+//		StudentService service = new StudentServiceImpl();
+//		try {
+//			List<Student> list = (List<Student>) session.getAttribute("list");
+//			list = service.search(null, null);
+//			if (list == null) {
+//				System.out.println("=========================nullllllllll=====================");
+//			}
+//			session.setAttribute("list", list);
+//			response.sendRedirect("/WebWay/StuManager/Stu_List.jsp");
+//		} catch (Exception e) {
+//			System.out.println(e.getMessage());
+//		}
+		response.sendRedirect("/WebWay/StudentPageListServlet?currentPage=1");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

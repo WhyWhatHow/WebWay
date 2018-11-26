@@ -53,7 +53,7 @@
 > web 工程共享一个servletContext，即对一个web工程，servletContext 唯一。
 #### functions : 
 
-   -  1. 获取全局参数
+   -  1. 获取全局参数++
 
 >   ServletContext context = getServletContext();
 >   String address = context.getInitParamter("address");
@@ -203,7 +203,18 @@
 #### 学生管理系统
 ##### user用户登录查看学生信息： 
 	login.jsp -- > loginServlet.java --> stu_list.jsp
+##### 对学生信息实现增加，删除，修改，查找
+
+##### 实现查询结果分页
+- 	Page - currentPage, totalPage, totalSize, pageSize(存在问题，自己并不能修改这个pageSize 的大小),List<T>,
+- 业务逻辑：
+	1. 获取currentPage，默认为1; 获取 pageSize(StudentDao, 无法修改，问题- pageBean 设置，然后修改 StudentDao.PAGE_SIZE(貌似是常量，不可以修改))   
+	2. 查找所含用户数量，当前查找的List<student>结果集,求取totalPage, 封装成Page返回， 利用改返回值设置 session属性。
+	3. jsp 前端页面设计， 实现view 界面
+
 #### problems:
+##### 数值型参数 带空格问题：
+-ans:	String.trim() 方法了解下
 ##### 数据库连接过程过慢：
 - 根本原因是自己的c3p0-config.xml 文件中一起的错误，鉴于自己当前知识有限，以及自己对于项目的理解能力不到位，在不追究，先给出参考答案（单纯的考虑数据库连接池方面的配置）
 > ans:
