@@ -8,70 +8,90 @@
 <head>
 <meta charset="UTF-8">
 <title>Edit Student Information</title>
+<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
-	<h1>Edit Student Information</h1>
-	<form method="post" action="/WebWay/UpdateStudentServlet">
-		<input type="hidden" name="sid" value="${stu.sid}">
-		<!-- 添加用户编号 -->
-		<table border="1" width="600">
-			<tr>
-				<td>Name:</td>
-				<td><input type="text" name="sname" value="${stu.sname}"></td>
-			</tr>
-			<tr>
-				<td>Gender</td>
-				<td><input type="radio" name="gender" value="male" s
-					<c:if test="${stu.gender== 'male'}"> checked </c:if>> male
-					<input type="radio" name="gender" value="female"
-					<c:if test="${stu.gender=='female'}">checked</c:if>>female
+	<div class="container">
+		<h1>Edit Student Information</h1>
+		<form method="post" class="form-group"
+			action="/WebWay/UpdateStudentServlet">
+			<input type="hidden" name="sid" value="${stu.sid}">
+			<!-- 添加用户编号 -->
+			<table class="table table-bordered table-hover table-striped"
+				border="1" >
+				<tr>
+					<td>Name:</td>
+					<td><input type="text" class="form-control" name="sname"
+						value="${stu.sname}"></td>
+				</tr>
+				<tr>
+					<td>Gender</td>
+					<td><input type="radio" class="radio radio-inline"
+						name="gender" value="male" s
+						<c:if test="${stu.gender== 'male'}"> checked </c:if>> male
+						<input type="radio" class="radio radio-inline" name="gender"
+						value="female" <c:if test="${stu.gender=='female'}">checked</c:if>>female
 
-				</td>
-			</tr>
-			<tr>
-				<td>Age:</td>
-				<td><input type="text" name="age" value="${stu.age} "></td>
-			</tr>
-			<tr>
-				<td>Address:</td>
-				<td><input type="text" name="address" value="${stu.address }"></td>
-			</tr>
+					</td>
+				</tr>
+				<tr>
+					<td>Age:</td>
+					<td><input type="text" name="age" class="form-control"
+						value="${stu.age} "></td>
+				</tr>
+				<tr>
+					<td>Address:</td>
+					<td><input type="text" class="form-control" name="address"
+						value="${stu.address }"></td>
+				</tr>
 
-			<tr>
-				<td>TelPhone:</td>
-				<td><input type="text" name="tel" value="${stu.tel}"></td>
-			</tr>
-			<tr>
-				<td>Birthday:</td>
-				<td><input type="text" name="birthday" value="${stu.birthday }"></td>
-			</tr>
-			<tr>
-				<td>Hobby:</td>
+				<tr>
+					<td>TelPhone:</td>
+					<td><input type="text" name="tel" class="form-control"
+						value="${stu.tel}"></td>
+				</tr>
+				<tr>
+					<td>Birthday:</td>
+					<td><input type="text" name="birthday" class="form-control"
+						value="${stu.birthday }"></td>
+				</tr>
+				<tr>
+					<td>Hobby:</td>
 
 
-				<td><input type="checkbox" name="hobby" value="reading"
-					<c:if test="${fn:contains(stu.hobby,'reading')}">checked </c:if>>reading
-					<input type="checkbox" name="hobby" value="sports"
-					<c:if test="${fn:contains(stu.hobby,'sports')}">checked </c:if>>sports
-					<input type="checkbox" name="hobby" value="movies"
-					<c:if test="${fn:contains(stu.hobby,'movies')}">checked </c:if>>movies
-					<input type="checkbox" name="hobby" value="hiking"
-					<c:if test="${fn:contains(stu.hobby,'hiking')}">checked </c:if>>hiking
-					<input type="checkbox" name="hobby" value="coding">coding <input
-					type="checkbox" name="hobby" value="basketball"
-					<c:if test="${fn:contains(stu.hobby,'basketball')}">checked </c:if>>basketball
-				</td>
-			</tr>
-			<tr>
-				<td>Information:</td>
-				<td><textarea name="info" rows="3" cols="80">${stu.info}</textarea></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" value="Update"></td>
-			</tr>
-		</table>
-	</form>
-	<a href="index.html"><button>Go Home</button></a>
-
+					<td><input type="checkbox" name="hobby" value="reading"
+						class="checkbox checkbox-inline"
+						<c:if test="${fn:contains(stu.hobby,'reading')}">checked </c:if>>reading
+						<input type="checkbox" name="hobby" value="sports"
+						class="checkbox checkbox-inline"
+						<c:if test="${fn:contains(stu.hobby,'sports')}">checked </c:if>>sports
+						<input type="checkbox" name="hobby" value="movies"
+						class="checkbox checkbox-inline"
+						<c:if test="${fn:contains(stu.hobby,'movies')}">checked </c:if>>movies
+						<input type="checkbox" name="hobby" value="hiking"
+						class="checkbox checkbox-inline"
+						<c:if test="${fn:contains(stu.hobby,'hiking')}">checked </c:if>>hiking
+						<input type="checkbox" name="hobby" value="coding"
+						class="checkbox checkbox-inline"
+						<c:if test="${fn:contains(stu.hobby,'coding')}">checked </c:if>>coding
+						<input type="checkbox" name="hobby" value="basketball"
+						class="checkbox checkbox-inline"
+						<c:if test="${fn:contains(stu.hobby,'basketball')}">checked </c:if>>basketball
+					</td>
+				</tr>
+				<tr>
+					<td>Information:</td>
+					<td><textarea class="form-control" name="info" rows="3"
+							>${stu.info}</textarea></td>
+				</tr>
+				<tr>
+					<td colspan=2><input type="submit" class="btn btn-info center-block" value="Update"></td>
+				</tr>
+			</table>
+		</form>
+		<a href="index.html"><button class="btn btn-info center-block ">Go Home</button></a>
+	</div>
 </body>
 </html>

@@ -213,11 +213,25 @@
 	3. jsp 前端页面设计， 实现view 界面
 
 #### problems:
+#### el 表达式 与 select 选项的爱恨情仇：
+- ans: 我是解决不了， js 才是最好用的 页面重绘者。
+	
+	```jquery
+			$(function(){
+	/*  写了 一个半小时的废话， 最后这样解决了。。 不等不说 js 的强大 */
+	var res= "${gender}";
+	alert(res);
+	$("#s_gender").val(res);
+	}
+	)
+	```
+	
 ##### 数值型参数 带空格问题：
 -ans:	String.trim() 方法了解下
 ##### 数据库连接过程过慢：
 - 根本原因是自己的c3p0-config.xml 文件中一起的错误，鉴于自己当前知识有限，以及自己对于项目的理解能力不到位，在不追究，先给出参考答案（单纯的考虑数据库连接池方面的配置）
 > ans:
+
 
 ```
 <c3p0-config>
@@ -259,6 +273,7 @@
 
 - reflect: 没有阅读过官方文档，对这个知识了解的太少，太过皮毛，看api文档写代码的速度简直令人发指， 凸显出问题：知识面匮乏，
 
+
 #### request 太多的 parameters:
 - ans : commons-beanutils.jar , commons-logging-1.1.1.jar 
 - MyDateConverter.java :  /WebWay/src/Util/MyDateConverter.java
@@ -267,12 +282,11 @@
 	ConvertUtils.register(new MyDateConverter(), Date.class); // 注册java.util.date 类
 	Map map = request.getParameterMap();
 	Student stu = new Student();
-	BeanUtils.populate(stu, map); // 赋值
-			
+	BeanUtils.populate(stu, map); // 赋值			
 ```
 
-
-#### 补充：
+ 
+####  补充：
 
 > web工程 读取文件用两种方式，
 

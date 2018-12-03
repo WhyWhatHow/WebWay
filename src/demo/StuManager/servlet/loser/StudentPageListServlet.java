@@ -1,4 +1,4 @@
-package demo.StuManager.servlet;
+package demo.StuManager.servlet.loser;
 
 import java.io.IOException;
 import java.sql.SQLException;

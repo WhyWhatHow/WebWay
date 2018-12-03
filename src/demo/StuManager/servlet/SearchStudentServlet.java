@@ -12,11 +12,13 @@ import javax.servlet.http.HttpSession;
 
 import demo.StuManager.Service.StudentService;
 import demo.StuManager.Service.StudentServiceImpl;
+import demo.StuManager.domain.Page;
 import demo.StuManager.domain.Student;
 
 public class SearchStudentServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
+	//private static final long serialVersionUID = 1L;
+	static int count =1 ;
+	
 	public SearchStudentServlet() {
 		super();
 	}
@@ -24,22 +26,29 @@ public class SearchStudentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-
-			String name = request.getParameter("name").toLowerCase();
-			String gender = request.getParameter("gender").toLowerCase();
+			int currentPage = 1 ;
+			String name = request.getParameter("name");
+			String gender = request.getParameter("gender");
+			String curr =request.getParameter("currentPage");
+			if(curr ==null || curr.equals("")) {
+				
+			}else {
+				currentPage = Integer.parseInt(curr);
+			}
 			System.out.println("======================search ====================");
-			System.out.println(name + ": " + gender);
 			if (gender.equals("--chose --")) {
 				gender = null;
+			}if (name.equals("--chose --")) {
+				name = null;
 			}
-			StudentService service = new StudentServiceImpl();
-			List<Student> list;
-			list = service.search(name, gender);
 			HttpSession session = request.getSession();
-			for (Student student : list) {
-				System.out.println(student);
-			}
-			session.setAttribute("list", list);
+			session.setAttribute("name", name);
+			session.setAttribute("gender", gender);
+			System.out.println(count+" times :"+name + ": " + gender);
+			count++;
+			StudentService service = new StudentServiceImpl();
+			Page page = service.searchByPage(name, gender, currentPage);
+			session.setAttribute("pageBean", page);
 			response.sendRedirect("/WebWay/StuManager/Stu_List.jsp");
 			System.out.println("================== end search ===================");
 		} catch (SQLException e) {

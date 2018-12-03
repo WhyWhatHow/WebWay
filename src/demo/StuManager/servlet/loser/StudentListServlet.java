@@ -1,4 +1,4 @@
-package demo.StuManager.servlet;
+package demo.StuManager.servlet.loser;
 
 import java.io.IOException;
 import java.util.List;
@@ -36,7 +36,7 @@ public class StudentListServlet extends HttpServlet {
 //		} catch (Exception e) {
 //			System.out.println(e.getMessage());
 //		}
-		response.sendRedirect("/WebWay/StudentPageListServlet?currentPage=1");
+		response.sendRedirect("/WebWay/SearchStudentServlet?currentPage=1");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

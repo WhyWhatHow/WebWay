@@ -10,6 +10,13 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 
 <script type="text/javascript">
+$(function(){
+	/*  写了 一个半小时的废话， 最后这样解决了。。 不等不说 js 的强大 */
+	var res= "${gender}";
+	alert(res);
+	$("#s_gender").val(res);
+}
+)
 	 function doDelete(sid){
 		 var res = confirm("你确定要删除么？");
 		 if (res){
@@ -29,7 +36,7 @@
 		 /* alert(name.val());
 		  alert(gender.val());
 	 	*/
-	 	 location.href="/WebWay/SearchStudentServlet?name="+name.val()+"&gender="+gender.val();	
+	 	 location.href="/WebWay/SearchStudentServlet?name="+name.val()+"&gender="+gender.val()+"&currentPage=1";	
 	 }
 
 </script>
@@ -38,18 +45,25 @@
 <body>
 	<div class=" container  container-fluid">
 
-		<h1 class="center-block">Student List Page</h1>
-		<table class="table table-hover  table-striped table-bordered ">
+		<h1 class="center-block">Student Information System</h1>
+		<table class="table table-hover table-striped table-bordered ">
 			<tr>
-				<td colspan=10 class=>
+				<td colspan=10>
 					<div class="form-group form-inline">
-						Search By Name: <input type="text" class="form-control"
-							id="s_name" placeholder="some word as you like "> Search
-						By Gender: <select class="form-control" id="s_gender"><option>--Chose
-								--</option>
+						Search By Name: <input type="text" class="form-control "
+							id="s_name" placeholder="some word as you like " value="${name}">
+						Search By Gender: <select class="form-control" id="s_gender">
+							<option>--Chose --</option>
+							<!-- 这样写了一晚上 一直是 失败， 我放弃了 这种蠢办法， js 才是最好用的-->
+<%-- 
+							<option name="s_gender" value="male"
+								selected="${gender eq 'male' ?'selected':'' }">male</option>
+							<option name="s_gender" value="female"
+								selected="${gender eq 'male' ?'selected':'' }">female</option> --%>
 							<option name="s_gender" value="male">male</option>
-							<option name="s_gender" value="female">female</option></select> <a
-							href="#" class="btn btn-info  " onclick="doSearch()">GO</a>
+							<option name="s_gender" value="female">female</option>
+
+						</select> <a href="#" class="btn btn-info  " onclick="doSearch()">GO</a>
 						<!--  js 添加点击事件 -->
 						<a class="btn btn-info pull-right" href="addStudent.jsp">add
 							new line ?</a>
@@ -97,22 +111,23 @@
 						${pageBean.currentPage}&nbsp;/&nbsp;${pageBean.totalPage}</div>
 					<div class="pull-right">
 						<a class="btn btn-info"
-							href="/WebWay/StudentPageListServlet?currentPage=1">First</a> <a
-							class="btn btn-info"
-							href="/WebWay/StudentPageListServlet?currentPage=<c:if test="${pageBean.currentPage> 1 }">${pageBean.currentPage-1}</c:if>">Prev</a>
+							href="/WebWay/SearchStudentServlet?currentPage=1&name=${name}&gender=${gender}">First</a>
+						<a class="btn btn-info"
+							href="/WebWay/SearchStudentServlet?currentPage=<c:if test="${pageBean.currentPage>1}">${pageBean.currentPage-1}</c:if>&name=${name}&gender=${gender}">Prev</a>
 						<c:forEach var="i" begin="1" end="${pageBean.totalPage}">
 							<a class="btn btn-info"
-								href="/WebWay/StudentPageListServlet?currentPage=${i}"
+								href="/WebWay/SearchStudentServlet?currentPage=${i}&name=${name}&gender=${gender}"
 								<c:if test="${i==pageBean.currentPage}">disabled</c:if>>${i}</a>
 						</c:forEach>
-
-						<a class="btn btn-info"
-							href="/WebWay/StudentPageListServlet?currentPage=
-								 <c:if test="${pageBean.currentPage+1 <= pageBean.totalPage}"> 
+						<c:if test="${pageBean.currentPage+1 <= pageBean.totalPage}">
+							<a class="btn btn-info"
+								href="/WebWay/SearchStudentServlet?currentPage=
 								 ${pageBean.currentPage+1}
-								</c:if>">
-							Next</a> <a class="btn btn-info"
-							href="/WebWay/StudentPageListServlet?currentPage=${pageBean.totalPage}">Last</a>
+							&name=${name}&gender=${gender}">
+								Next</a>
+						</c:if>
+						<a class="btn btn-info"
+							href="/WebWay/SearchStudentServlet?currentPage=${pageBean.totalPage}&name=${name}&gender=${gender}">Last</a>
 					</div>
 				</td>
 			</tr>

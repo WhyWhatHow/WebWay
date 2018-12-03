@@ -8,8 +8,12 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.junit.Test;
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
+
+import com.mysql.cj.exceptions.DeadlockTimeoutRollbackMarker;
 
 import Util.DButil;
+import demo.StuManager.domain.Page;
 import demo.StuManager.domain.Student;
 
 public class StudentImpl implements StudentDao {
@@ -19,13 +23,6 @@ public class StudentImpl implements StudentDao {
 		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
 		return queryRunner.query("select * from student ", new BeanListHandler<Student>(Student.class));
 
-	}
-
-	@Override
-	public List<Student> findByPage(int currentPage) throws SQLException {
-		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
-		return queryRunner.query("select * from student limit ? offset ?", new BeanListHandler<Student>(Student.class),
-				PAGE_SIZE, (currentPage - 1) * PAGE_SIZE);
 	}
 
 	@Override
@@ -77,33 +74,27 @@ public class StudentImpl implements StudentDao {
 	public List<Student> search(String sql) throws SQLException {
 		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
 		return queryRunner.query(sql, new BeanListHandler<Student>(Student.class));
-
 	}
 
-	@Test
-	public void run() {
-		try {
-			Student student = findBySid(1);
-			System.out.println(student);
-
-		} catch (Exception e) {
-			System.out.println("========" + e.getMessage());
-		}
-	}
-
-	@Test
-	public void run_2() throws SQLException {
-		System.out.println("===========delete by sid ============");
-
-		Object res = findStudentNum();
-		System.out.println(res);
-		System.out.println("====================");
+	@Override
+	public List<Student> findByPage(String sql, int currentPage) throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
+		return queryRunner.query(sql + " limit ? offset ?", new BeanListHandler<Student>(Student.class), PAGE_SIZE,
+				(currentPage - 1) * PAGE_SIZE);
 	}
 
 	@Override
 	public int findStudentNum() throws SQLException {
 		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
-		Object res =queryRunner.query("select  count(*) from student", new ScalarHandler());
-		return Integer.parseInt(res.toString()) ;
+		Object res = queryRunner.query("select  count(*) from student", new ScalarHandler());
+		return Integer.parseInt(res.toString());
 	}
+
+	@Override
+	public int searchStudentNum(String sql) throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
+		Object res = queryRunner.query(sql, new ScalarHandler());
+		return Integer.parseInt(res.toString());
+	}
+
 }
