@@ -34,7 +34,13 @@ public class UpdateStudentServlet extends HttpServlet {
 		ConvertUtils.register(new MyDateConverter(), Date.class);
 		Map  map = request.getParameterMap();
 		BeanUtils.populate(stu, map);
-		
+		String hobbys[] = request.getParameterValues("hobby");
+		String hobby = hobbys[0];
+		for (int i = 1; i < hobbys.length; i++) {
+			hobby = hobby + "," + hobbys[i];
+		}
+		System.out.println("===============");
+		stu.setHobby(hobby);
 		System.out.println(stu);
 		StudentService service = new StudentServiceImpl();
 		service.update(stu);

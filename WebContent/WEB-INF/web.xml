@@ -191,7 +191,7 @@
     <description></description>
     <display-name>StudentListServlet</display-name>
     <servlet-name>StudentListServlet</servlet-name>
-    <servlet-class>demo.StuManager.servlet.StudentListServlet</servlet-class>
+    <servlet-class>demo.StuManager.servlet.loser.StudentListServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>StudentListServlet</servlet-name>
@@ -256,5 +256,25 @@
   <servlet-mapping>
     <servlet-name>StudentPageListServlet</servlet-name>
     <url-pattern>/StudentPageListServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CheckNameServlet</display-name>
+    <servlet-name>CheckNameServlet</servlet-name>
+    <servlet-class>demo.CheckUserName.CheckNameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckNameServlet</servlet-name>
+    <url-pattern>/CheckNameServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>WordHintServlet</display-name>
+    <servlet-name>WordHintServlet</servlet-name>
+    <servlet-class>demo.WordHint.WordHintServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WordHintServlet</servlet-name>
+    <url-pattern>/WordHintServlet</url-pattern>
   </servlet-mapping>
 </web-app>

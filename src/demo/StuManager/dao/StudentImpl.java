@@ -8,12 +8,8 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.junit.Test;
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
-
-import com.mysql.cj.exceptions.DeadlockTimeoutRollbackMarker;
 
 import Util.DButil;
-import demo.StuManager.domain.Page;
 import demo.StuManager.domain.Student;
 
 public class StudentImpl implements StudentDao {
@@ -23,6 +19,18 @@ public class StudentImpl implements StudentDao {
 		QueryRunner queryRunner = new QueryRunner(DButil.getDataBase());
 		return queryRunner.query("select * from student ", new BeanListHandler<Student>(Student.class));
 
+	}
+	@Test 
+	public void run () {
+		
+		try {
+			List<Student> list= findAll();
+			 for (Student student : list) {
+				System.out.println(student);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

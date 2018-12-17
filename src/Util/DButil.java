@@ -1,3 +1,4 @@
+
 package Util;
 
 import java.io.File;
@@ -16,8 +17,12 @@ import test.Bean.User;
 public class DButil {
 	
 	static ComboPooledDataSource dataSource = null;
-	static {
-		dataSource = new ComboPooledDataSource("mysql");
+//	static {
+//		dataSource = new ComboPooledDataSource("mysql");
+//	}
+	public static void init(String configName) {
+		dataSource = new ComboPooledDataSource(configName);
+	
 	}
 	// 为引入数据库连接池的写法
 //	static String driverClass = null;
@@ -40,10 +45,15 @@ public class DButil {
 //		} catch (Exception e) {
 //		}
 //	}
-	
-	public static ComboPooledDataSource getDataBase() {
+	public static ComboPooledDataSource getDataBase(String configName) {
+		dataSource = new ComboPooledDataSource(configName);
 		return dataSource;
 	}
+	public static ComboPooledDataSource getDataBase() {
+		dataSource= new ComboPooledDataSource("mysql");
+		return dataSource;
+	}
+	
 	public static Connection open() {
 		// java 实训代码
 		

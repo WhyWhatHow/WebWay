@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +13,7 @@
 
 		<h1>Add New One</h1>
 
-		<form class="form-group" action="/WebWay/AddStudentServlet"
-			method="post">
+		<form class="form-group" action="/WebWay/AddStudentServlet" method="post">
 			<table class=" table table-bordered table-hover  table-striped">
 				<tr>
 					<td>Name:</td>
@@ -23,10 +21,7 @@
 				</tr>
 				<tr>
 					<td>Gender:</td>
-					<td><input type="radio" class="radio radio-inline"
-						name="gender" value="male" checked="checked">Boy <input
-						type="radio" class="radio radio-inline" name="gender"
-						value="female">Girl</td>
+					<td><input type="radio" class="radio radio-inline" name="gender" value="male" checked="checked">Boy <input type="radio" class="radio radio-inline" name="gender" value="female">Girl</td>
 				</tr>
 				<tr>
 					<td>Age:</td>
@@ -46,26 +41,24 @@
 				</tr>
 				<tr>
 					<td>Hobby:</td>
-					<td><input class="checkbox checkbox-inline"
-						 type="checkbox" name="hobby" value="reading">reading
-						<input class="checkbox checkbox-inline" type="checkbox" name="hobby" value="sports">sports
-						<input class="checkbox checkbox-inline" type="checkbox" name="hobby" value="movies">movies
-						<input class="checkbox checkbox-inline" type="checkbox" name="hobby" value="hiking">hiking
-						<input class="checkbox checkbox-inline" type="checkbox" name="hobby" value="coding">coding
-						<input class="checkbox checkbox-inline"type="checkbox" name="hobby" value="basketball">basketball
+					<td><input class="checkbox checkbox-inline" type="checkbox" name="hobby" value="reading">reading <input class="checkbox checkbox-inline" type="checkbox" name="hobby" value="sports">sports
+						<input class="checkbox checkbox-inline" type="checkbox" name="hobby" value="movies">movies <input class="checkbox checkbox-inline" type="checkbox" name="hobby" value="hiking">hiking
+						<input class="checkbox checkbox-inline" type="checkbox" name="hobby" value="coding">coding <input class="checkbox checkbox-inline" type="checkbox" name="hobby" value="basketball">basketball
 					</td>
 				</tr>
 				<tr>
 					<td>Information:</td>
-					<td><textarea class="form-control"name="info" rows="3" ></textarea></td>
+					<td><textarea class="form-control" name="info" rows="3"></textarea></td>
 				</tr>
-				<tr >
-					<td colspan= 2><input type="submit"  class = "btn btn-info center-block" value="Add New One! "></td>
+				<tr>
+					<td colspan=2><input type="submit" class="btn btn-info center-block" value="Add New One! "></td>
 
 				</tr>
 			</table>
 		</form>
-		<a href="index.html"><button class = "btn btn-info center-block">Go Home</button></a>
+		<a href="index.html">
+			<button class="btn btn-info center-block">Go Home</button>
+		</a>
 	</div>
 </body>
 </html>

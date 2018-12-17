@@ -1,9 +1,9 @@
 package demo.StuManager.servlet;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -50,9 +50,16 @@ public class AddStudentServlet extends HttpServlet {
 //			Date date = new SimpleDateFormat("yyyy-MM-dd").parse(brithday);
 //			Student stu = new Student(sid, sname, gender, address, tel, hobby, info, date, age);
 			ConvertUtils.register(new MyDateConverter(), Date.class);
-			Map map = request.getParameterMap();
+			Map<String, String[]> map = request.getParameterMap();
 			Student stu = new Student();
 			BeanUtils.populate(stu, map);
+			String hobbys[] = map.get("hobby");
+			String hobby = hobbys[0];
+			for (int i = 1; i < hobbys.length; i++) {
+				hobby = hobby + "," + hobbys[i];
+			}
+			System.out.println("===============");
+			stu.setHobby(hobby);
 			System.out.println(stu);
 			StudentService service = new StudentServiceImpl();
 			service.add(stu);

@@ -116,6 +116,7 @@ public class StudentServiceImpl implements StudentService {
 		page.setList(dao.findByPage(sql, currentPage));
 		return page;
 	}
+
 	@Override
 	public Page<Student> searchByPage(String name, String gender, int currentPage) throws SQLException {
 		Page<Student> page = new Page<Student>();
@@ -144,7 +145,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Test
 	public void run() throws SQLException {
-		Page<Student> page = searchByPage("l",null,1);
+		Page<Student> page = searchByPage("l", null, 1);
 		System.out.println(page);
 	}
 

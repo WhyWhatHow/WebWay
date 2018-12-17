@@ -36,7 +36,7 @@ public class StudentListServlet extends HttpServlet {
 //		} catch (Exception e) {
 //			System.out.println(e.getMessage());
 //		}
-		response.sendRedirect("/WebWay/SearchStudentServlet?currentPage=1");
+		response.sendRedirect("/WebWay/SearchStudentServlet?name=--chose --&gender=--chose --?currentPage=1");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
